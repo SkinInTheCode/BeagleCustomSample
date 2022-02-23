@@ -1,0 +1,4 @@
+include ':designsystem'
+include ':serverdriven'
+include ':app'
+rootProject.name = "BeagleCustomSamplesAndroid"

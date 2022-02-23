@@ -1,0 +1,16 @@
+{
+  "color": {
+    "blue": {
+      "base": "#FDDFDF",
+      "variant": "#FDDFDF"
+    },
+    "pink": {
+      "base": "#FDDFDF",
+      "variant": "#FDDFDF"
+    },
+    "red": {
+      "base": "#FDDFDF",
+      "variant": "#FDDFDF"
+    }
+  }
+}
