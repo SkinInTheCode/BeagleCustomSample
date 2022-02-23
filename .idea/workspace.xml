@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b6f034e2-de33-411c-983d-c85b413a85f1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/beagle-android" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/.gitlab-ci.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/BeagleBffApplication.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/ClickAction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/controller/ItiController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/data/MockDatabase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/data/models/CrmData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/data/models/CustomActionVictor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/service/ItiService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/service/impl/ItiServiceImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/ui/builders/CarouselBannerBuilder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/ui/builders/CarouselQuickActionsBuilder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/ui/builders/ItiHomeBuilder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/ui/components/BannerComponent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/ui/components/QuickActionComponent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/kotlin/br/com/sknc/beagle/bff/ui/widgets/BalanceWidget.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/test/kotlin/br/com/sknc/beagle/bff/BeagleBffApplicationTests.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beagle-bff/src/test/kotlin/br/com/sknc/beagle/bff/ItiControllerTest.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="25UNbflJ0pdJpWLu7cLgAvLMTyU" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../../../Android/AndroidSdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/beagle-bff" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\AndroidProjects\ServerDrivenUI\beagle-bff" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b6f034e2-de33-411c-983d-c85b413a85f1" name="Default Changelist" comment="" />
+      <created>1645577777166</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1645577777166</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2507" y="88" key="CommitChangelistDialog2" timestamp="1645577908769">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2507" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1645577908769" />
+  </component>
+</project>
