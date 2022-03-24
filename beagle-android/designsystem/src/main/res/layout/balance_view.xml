@@ -4,54 +4,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="48dp"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="63dp"
-        android:layout_height="16dp"
-        android:text="saldo é"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
+        style="@style/BaseText.Large.Bold"
         android:id="@+id/tvBalance"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
         android:visibility="invisible"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="R$ 2000,00"
+        tools:visibility="visible" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_view_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone">
 
         <View
-            android:layout_width="100dp"
-            android:layout_height="24dp"
-            android:background="#dddddd" />
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:background="#dddddd"/>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+    <com.example.designsystem.uikit.IconTextView
+        android:id="@+id/itv_error_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:gravity="center"
         android:visibility="gone"
+        android:textColor="@color/purple_700"
+        android:textSize="@dimen/abc_text_size_large_material"
         app:layout_constraintBottom_toBottomOf="@+id/tvBalance"
         app:layout_constraintStart_toEndOf="@+id/tvBalance"
         app:layout_constraintTop_toTopOf="@+id/tvBalance"
-        app:srcCompat="@android:drawable/ic_popup_sync" />
+        android:text="\ue860" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseText" parent="Widget.AppCompat.TextView" />
+
+    <style name="BaseText.Small" >
+        <item name="android:textSize">@dimen/abc_text_size_small_material</item>
+    </style>
+
+    <style name="BaseText.Medium" >
+        <item name="android:textSize">@dimen/abc_text_size_medium_material</item>
+    </style>
+
+    <style name="BaseText.Large">
+        <item name="android:textSize">@dimen/abc_text_size_large_material</item>
+    </style>
+
+    <style name="BaseText.Small.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BaseText.Medium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BaseText.Large.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

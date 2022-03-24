@@ -9,7 +9,7 @@ import br.com.zup.beagle.android.utils.observeBindChanges
 import br.com.zup.beagle.android.widget.RootView
 import br.com.zup.beagle.android.widget.WidgetView
 import br.com.zup.beagle.annotation.RegisterWidget
-import com.example.designsystem.uikit.balance.CustomBalanceView
+import com.example.designsystem.uikit.BalanceView
 import com.example.serverdriven.ViewCycleListener
 
 @RegisterWidget
@@ -22,7 +22,7 @@ class BalanceWidget(
     private val errorAction: List<Action>? = null
 ) : WidgetView(), ContextComponent, ViewCycleListener {
 
-    override fun buildView(rootView: RootView) = CustomBalanceView(rootView.getContext()).apply {
+    override fun buildView(rootView: RootView) = BalanceView(rootView.getContext()).apply {
           observeBindChanges(
                 rootView = rootView,
                 this,
@@ -71,7 +71,6 @@ class BalanceWidget(
             it.execute(rootView, view)
         }
     }
-
 }
 
 enum class BalanceState {

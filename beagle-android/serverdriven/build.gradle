@@ -6,15 +6,24 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
@@ -23,9 +32,10 @@ dependencies {
     api project(path: ':designsystem')
     implementation 'com.squareup.okhttp:okhttp:2.7.5'
 
-    kapt "br.com.zup.beagle:android-processor:1.6.1"
-    api "br.com.zup.beagle:android:1.6.1"
-    implementation "br.com.zup.beagle:beagle-scaffold:1.6.0"
+    kapt "br.com.zup.beagle:android-processor:1.10.1"
+    api "br.com.zup.beagle:android:1.10.1"
+
+    implementation "br.com.zup.beagle:beagle-scaffold:1.7.1"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'

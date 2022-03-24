@@ -1,20 +1,28 @@
 package com.example.serverdriven.network
 
-import br.com.zup.beagle.android.annotation.BeagleComponent
+
 import br.com.zup.beagle.android.networking.*
+import com.example.designsystem.component.sharedpreference.Storage
 import com.squareup.okhttp.*
 import java.io.IOException
 
-@BeagleComponent
-class CustomHttpClient : HttpClient {
+class CustomHttpClient(
+    private val storage: Storage,
+    private val okHttpClient: OkHttpClient = OkHttpClient()
+) : HttpClient {
 
-    private val okHttpClient = OkHttpClient()
-    private var storedData : ResponseData? = null
+    private var shouldStore = false
+
+    companion object{
+        private const val FALLBACK = "FALLBACK"
+    }
 
     override fun execute(
             request: RequestData,
             onSuccess: (responseData: ResponseData) -> Unit,
             onError: (responseData: ResponseData) -> Unit): RequestCall {
+
+        shouldStore = request.headers[FALLBACK]?.toBoolean() ?: false
 
         return makeRequest(request, onSuccess, onError)
     }
@@ -27,17 +35,22 @@ class CustomHttpClient : HttpClient {
 
         call.enqueue(object : Callback {
             override fun onResponse(response: Response?) {
-                response?.let {
-                           with(response.toRespondData()){
-                        //val json = String(this.data)
-                        storedData = this
+                 response?.let {
+                    with(response.toRespondData()){
+                        if (shouldStore) storage.save(response.request().url().toString(), this)
                         onSuccess.invoke(this)
                     }
                 }
             }
 
             override fun onFailure(request: Request?, e: IOException?) {
-                storedData?.let{
+
+                if (shouldStore)
+                    storage.retrieve(request?.url().toString(), ResponseData::class.java)?.let{
+                        onSuccess.invoke(it)
+                    }
+
+                storage.retrieve(request?.url().toString(), ResponseData::class.java)?.let{
                     onSuccess.invoke(it)
                 }?: run {
                     onError.invoke(

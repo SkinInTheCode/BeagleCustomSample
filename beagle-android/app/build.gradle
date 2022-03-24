@@ -4,6 +4,7 @@ import org.gradle.work.InputChanges
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 task customTask() {
@@ -13,21 +14,17 @@ task customTask() {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "com.example.beaglecustomsamplesandroid"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    viewBinding {
-        enabled = true
     }
 
     buildTypes {
@@ -47,12 +44,17 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
 
 dependencies {
+
+    kapt 'com.google.dagger:dagger-compiler:2.13'
+    implementation 'com.google.dagger:dagger:2.13'
+    implementation 'com.google.code.gson:gson:2.8.7'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -64,41 +66,3 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 
-abstract class IncrementalReverseTask extends DefaultTask {
-    @Incremental
-    @PathSensitive(PathSensitivity.NAME_ONLY)
-    @InputDirectory
-    abstract DirectoryProperty getInputDir()
-
-    @OutputDirectory
-    abstract DirectoryProperty getOutputDir()
-
-    @Input
-    abstract Property<String> getInputProperty()
-
-    @TaskAction
-    void execute(InputChanges inputChanges) {
-        println(inputChanges.incremental
-                ? 'Executing incrementally'
-                : 'Executing non-incrementally'
-        )
-
-        inputChanges.getFileChanges(inputDir).each { change ->
-            if (change.fileType == FileType.DIRECTORY) return
-
-            println "${change.changeType}: ${change.normalizedPath}"
-            def targetFile = outputDir.file(change.normalizedPath).get().asFile
-            if (change.changeType == ChangeType.REMOVED) {
-                targetFile.delete()
-            } else {
-                targetFile.text = change.file.text.reverse()
-            }
-        }
-    }
-}
-
-tasks.register('incrementalReverse', IncrementalReverseTask) {
-    inputDir = file('inputs')
-    outputDir = file("$buildDir/outputs")
-    inputProperty = project.properties['taskInputProperty'] ?: 'original'
-}
