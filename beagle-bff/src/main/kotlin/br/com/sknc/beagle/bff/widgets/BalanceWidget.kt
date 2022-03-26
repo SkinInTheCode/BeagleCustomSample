@@ -1,4 +1,4 @@
-package br.com.sknc.beagle.bff.ui.widgets
+package br.com.sknc.beagle.bff.widgets
 
 import br.com.zup.beagle.annotation.RegisterWidget
 import br.com.zup.beagle.widget.Widget

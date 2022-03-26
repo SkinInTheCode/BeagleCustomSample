@@ -14,8 +14,8 @@ class ServerDrivenInitializer {
 
         fun initialize(application: Application,
                        storage: Storage) {
-            with(BeagleScaffold(BeagleSetup())){
 
+            with(BeagleScaffold(BeagleSetup())){
                 httpClientFactory?.let { factory ->
                     if (factory is AppHttpClientFactory)
                         factory.storage = storage
