@@ -51,8 +51,8 @@ class HomeScreenBuilder(
                 MenuFactory.build(menuRepository.getMenu()).applyMargin(bottom = 24, left = 0, right = 0),
                 BannerButtonComposedWidget(
                     IconTextConfigData("\ue82f"),
-                    TextConfigData("Meus cartões"),
-                    TextConfigData("3"),
+                    TextConfigData("Meus cartões", textStyle = TextStyle.BaseText_Small_Bold),
+                    TextConfigData("3", textStyle = TextStyle.BaseText_Small_Bold),
                     listOf()
                 ).build().applyMargin(bottom = 24),
                 BannerListFactory.build(bannerRepository.getBanners()).applyMargin(bottom = 24, left = 0, right = 0),

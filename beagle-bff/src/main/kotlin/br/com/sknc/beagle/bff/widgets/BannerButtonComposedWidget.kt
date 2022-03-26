@@ -26,22 +26,34 @@ class BannerButtonComposedWidget(
         onPress = actionClick,
         child = Container(
             children = listOf(
-                IconTextViewWidget(
-                    icon = icon.uniCodeIcon,
-                    iconColor = icon.color,
-                    iconSize = icon.size
-                ).applyStyle(
-                    style = Style(
-                        size = Size(
-                            width = 48.unitReal(),
-                            height = 48.unitReal()
+                Container(
+                    children = listOf(
+                        IconTextViewWidget(
+                            icon = icon.uniCodeIcon,
+                            iconColor = icon.color,
+                            iconSize = icon.size
+                        ).applyStyle(
+                            style = Style(
+                                size = Size(
+                                    width = 48.unitReal(),
+                                    height = 48.unitReal()
+                                )
+                            )
+                        ),
+                        Text(
+                            text = title.text,
+                            textColor = title.textColor,
+                            styleId = title.textStyle,
+                            alignment = TextAlignment.CENTER
                         )
                     )
-                ),
-                Text(
-                    text = title.text,
-                    textColor = title.textColor,
-                    styleId = title.textStyle
+                ).applyStyle(
+                    Style(
+                        margin = EdgeValue(left = 4.unitReal()),
+                        flex = Flex(
+                            flexDirection = FlexDirection.ROW
+                        )
+                    )
                 ),
                 Text(
                     text = info.text,
