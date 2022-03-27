@@ -5,6 +5,7 @@ import br.com.sknc.beagle.bff.TextStyle
 import br.com.sknc.beagle.bff.applyMargin
 import br.com.sknc.beagle.bff.factory.BalanceFactory
 import br.com.sknc.beagle.bff.factory.BannerListFactory
+import br.com.sknc.beagle.bff.factory.InsightsLiveSectionFactory
 import br.com.sknc.beagle.bff.factory.MenuFactory
 import br.com.sknc.beagle.bff.repository.BalanceRepository
 import br.com.sknc.beagle.bff.repository.BannerRepository
@@ -36,6 +37,7 @@ class HomeScreenBuilder(
             scrollBarEnabled = false,
             children = listOf(
                 MainHeaderScreenBuilder.build(),
+                InsightsLiveSectionFactory.build().applyMargin(top = 24, bottom = 12),
                 DescriptionIconButtonComposedWidget(
                     title = TextConfigData(text = "Conta", textStyle = TextStyle.BaseText_Medium_Bold),
                     icon = IconTextConfigData(uniCodeIcon = "\ue876", size = 16.0f),
