@@ -15,11 +15,9 @@ class IconTextViewWidget(
 ) : WidgetView() {
 
     override fun buildView(rootView: RootView) = IconTextView(rootView.getContext()).apply {
-        setText(icon)
-
+        text = icon
         iconColor?.let { setTextColor(Color.parseColor(it)) }
         iconSize?.let { setTextSize(TypedValue.COMPLEX_UNIT_SP, it) }
-
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.serverdriven.components.balance.widgets
+package com.example.serverdriven.widgets
 
 import br.com.zup.beagle.android.action.Action
 import br.com.zup.beagle.android.context.Bind

@@ -3,38 +3,14 @@ package com.example.beaglecustomsamplesandroid
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import br.com.zup.beagle.android.action.Action
-import br.com.zup.beagle.android.action.SendRequest
-import br.com.zup.beagle.android.action.SetContext
-import br.com.zup.beagle.android.components.Text
-import br.com.zup.beagle.android.components.layout.Container
-import br.com.zup.beagle.android.components.layout.Screen
-import br.com.zup.beagle.android.components.layout.ScrollView
-import br.com.zup.beagle.android.context.ContextData
-import br.com.zup.beagle.android.context.expressionOf
-import br.com.zup.beagle.android.context.valueOf
 import br.com.zup.beagle.android.networking.HttpAdditionalData
 import br.com.zup.beagle.android.networking.HttpMethod
 import br.com.zup.beagle.android.networking.RequestData
 import br.com.zup.beagle.android.utils.loadView
-import br.com.zup.beagle.android.utils.toView
 import br.com.zup.beagle.android.view.ServerDrivenState
 import br.com.zup.beagle.android.view.custom.OnServerStateChanged
-import br.com.zup.beagle.core.CornerRadius
-import br.com.zup.beagle.core.ServerDrivenComponent
-import br.com.zup.beagle.core.Style
-import br.com.zup.beagle.ext.applyFlex
-import br.com.zup.beagle.ext.applyStyle
-import br.com.zup.beagle.ext.unitPercent
-import br.com.zup.beagle.ext.unitReal
-import br.com.zup.beagle.widget.Widget
-import br.com.zup.beagle.widget.core.*
 import com.example.serverdriven.ViewCycleListener
-import com.example.serverdriven.components.balance.widgets.BalanceState
-import com.example.serverdriven.components.balance.widgets.BalanceWidget
 import com.example.serverdriven.onViewStateChange
-import com.example.serverdriven.widgets.CircleIconButtonWidget
-import com.example.serverdriven.widgets.IconTextViewWidget
 
 class MainActivity : AppCompatActivity() {
 

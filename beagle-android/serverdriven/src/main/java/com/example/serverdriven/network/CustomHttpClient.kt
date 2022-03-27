@@ -5,6 +5,7 @@ import br.com.zup.beagle.android.networking.*
 import com.example.designsystem.component.sharedpreference.Storage
 import com.squareup.okhttp.*
 import java.io.IOException
+import java.net.HttpRetryException
 
 class CustomHttpClient(
     private val storage: Storage,
@@ -17,6 +18,7 @@ class CustomHttpClient(
         private const val FALLBACK = "FALLBACK"
     }
 
+    @ExperimentalStdlibApi
     override fun execute(
             request: RequestData,
             onSuccess: (responseData: ResponseData) -> Unit,
@@ -38,7 +40,11 @@ class CustomHttpClient(
                  response?.let {
                     with(response.toRespondData()){
                         if (shouldStore) storage.save(response.request().url().toString(), this)
-                        onSuccess.invoke(this)
+
+                        if (response.code() in 200..299)
+                            onSuccess.invoke(this)
+                        else
+                            onFailure(response.request(), HttpRetryException(response.message(), response.code()))
                     }
                 }
             }

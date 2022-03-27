@@ -1,10 +1,12 @@
 package br.com.sknc.beagle.bff.data
 
 import br.com.sknc.beagle.bff.data.models.BannerItem
+import br.com.sknc.beagle.bff.data.models.Insight
 import br.com.sknc.beagle.bff.data.models.MenuItem
 import org.springframework.beans.factory.config.ConfigurableBeanFactory
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
+import javax.swing.Action
 
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -33,6 +35,13 @@ class MockDatabase {
             "negócio."
 
         )
+    )
+
+    fun getInsight() = Insight(
+        title = "Teste",
+        description = "fdsoifnosdn fdsfijdsoi",
+        buttonTitle = "começe agora",
+        actionClick = listOf()
     )
 
     fun getMenu() = listOf(
