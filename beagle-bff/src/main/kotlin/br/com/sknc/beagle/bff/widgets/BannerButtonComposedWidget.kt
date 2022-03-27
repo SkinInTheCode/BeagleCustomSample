@@ -45,6 +45,12 @@ class BannerButtonComposedWidget(
                             textColor = title.textColor,
                             styleId = title.textStyle,
                             alignment = TextAlignment.CENTER
+                        ).applyStyle(
+                            style = Style(
+                                size = Size(
+                                    height = 48.unitReal()
+                                )
+                            )
                         )
                     )
                 ).applyStyle(
