@@ -1,13 +1,11 @@
 package com.example.designsystem.uikit
 
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
-import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.designsystem.R
 
@@ -28,7 +26,7 @@ class CircleIconButtonView @JvmOverloads constructor(
     fun initView(title: String, icon: String, @ColorInt backgroundColor: Int? = null) {
 
         this.title.text = title
-        this.icon.setText(icon)
+        this.icon.text = icon
 
         backgroundColor?.let { color ->
             circleBackground.background.setTint(color)

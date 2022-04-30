@@ -1,8 +1,8 @@
 package br.com.sknc.beagle.bff.data
 
-import br.com.sknc.beagle.bff.data.models.BannerItem
-import br.com.sknc.beagle.bff.data.models.Insight
-import br.com.sknc.beagle.bff.data.models.MenuItem
+import br.com.sknc.beagle.bff.domain.models.BannerItem
+import br.com.sknc.beagle.bff.domain.models.Insight
+import br.com.sknc.beagle.bff.domain.models.MenuItem
 import org.springframework.beans.factory.config.ConfigurableBeanFactory
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
