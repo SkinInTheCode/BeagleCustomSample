@@ -4,7 +4,7 @@ import android.graphics.Color
 import br.com.zup.beagle.android.action.Action
 import br.com.zup.beagle.android.widget.RootView
 import br.com.zup.beagle.android.widget.WidgetView
-import br.com.zup.beagle.annotation.RegisterWidget
+import br.com.zup.beagle.android.annotation.RegisterWidget
 import com.example.designsystem.uikit.CircleIconButtonView
 
 @RegisterWidget

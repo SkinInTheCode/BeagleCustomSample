@@ -11,6 +11,6 @@ class AppHttpClientFactory: HttpClientFactory {
     lateinit var storage: Storage
 
     override fun create(): HttpClient {
-        return CustomHttpClient(storage)
+        return CustomHttpClient()
     }
 }

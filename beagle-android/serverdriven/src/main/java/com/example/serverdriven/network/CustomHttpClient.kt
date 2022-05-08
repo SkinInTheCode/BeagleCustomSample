@@ -1,31 +1,18 @@
 package com.example.serverdriven.network
 
-
 import br.com.zup.beagle.android.networking.*
-import com.example.designsystem.component.sharedpreference.Storage
 import com.squareup.okhttp.*
 import java.io.IOException
 import java.net.HttpRetryException
 
 class CustomHttpClient(
-    private val storage: Storage,
     private val okHttpClient: OkHttpClient = OkHttpClient()
 ) : HttpClient {
 
-    private var shouldStore = false
-
-    companion object{
-        private const val FALLBACK = "FALLBACK"
-    }
-
-    @ExperimentalStdlibApi
     override fun execute(
             request: RequestData,
             onSuccess: (responseData: ResponseData) -> Unit,
             onError: (responseData: ResponseData) -> Unit): RequestCall {
-
-        shouldStore = request.headers[FALLBACK]?.toBoolean() ?: false
-
         return makeRequest(request, onSuccess, onError)
     }
 
@@ -39,8 +26,6 @@ class CustomHttpClient(
             override fun onResponse(response: Response?) {
                  response?.let {
                     with(response.toRespondData()){
-                        if (shouldStore) storage.save(response.request().url().toString(), this)
-
                         if (response.code() in 200..299)
                             onSuccess.invoke(this)
                         else
@@ -50,23 +35,13 @@ class CustomHttpClient(
             }
 
             override fun onFailure(request: Request?, e: IOException?) {
-
-                if (shouldStore)
-                    storage.retrieve(request?.url().toString(), ResponseData::class.java)?.let{
-                        onSuccess.invoke(it)
-                    }
-
-                storage.retrieve(request?.url().toString(), ResponseData::class.java)?.let{
-                    onSuccess.invoke(it)
-                }?: run {
-                    onError.invoke(
-                        ResponseData(
-                            statusCode = 0,
-                            data = byteArrayOf(),
-                            mapOf()
-                        )
+                onError.invoke(
+                    ResponseData(
+                        statusCode = 0,
+                        data = byteArrayOf(),
+                        mapOf()
                     )
-                }
+                )
             }
         })
 
@@ -84,13 +59,16 @@ class CustomHttpClient(
     )
 
     private fun RequestData.createCall(client : OkHttpClient) = client.newCall(
+        with(httpAdditionalData){
             Request.Builder()
-                    .url(uri.toString())
-                    .headers(Headers.of(headers))
-                    .method(
-                          method.name,
-                          body.toRequestBody(method)
-                    ).build()
+                .url(url)
+                .headers(Headers.of(headers))
+                .method(
+                    method.name,
+                    body.toString().toRequestBody(method)
+                ).build()
+        }
+
     )
 
     private fun String?.toRequestBody(httpMethod : HttpMethod) = when(httpMethod) {
