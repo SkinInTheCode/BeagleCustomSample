@@ -44,16 +44,14 @@ class HomeScreenBuilder(
             scrollDirection = ScrollAxis.VERTICAL,
             scrollBarEnabled = false,
             children = listOf(
-                MainHeaderScreenBuilder.build(),
-                InsightsLiveSectionFactory.build().applyMargin(top = 24, bottom = 12),
+               MainHeaderScreenBuilder.build(),
+               InsightsLiveSectionFactory.build().applyMargin(top = 24, bottom = 12),
                 DescriptionIconButtonComposedWidget(
                     title = TextConfigData(text = "Conta", textStyle = TextStyle.BaseText_Medium_Bold),
                     icon = IconTextConfigData(uniCodeIcon = "\ue876", size = 16.0f),
                     actionClick = listOf()
                 ).applyMargin(top = 12),
-
                 balanceViewAdapter.build(balanceService.getBalanceSectionData()).applyMargin(bottom = 24),
-
                 MenuViewAdapter.build(menuRepository.fetchMenu()).applyMargin(bottom = 24, left = 0, right = 0),
                 BannerButtonComposedWidget(
                     IconTextConfigData("\ue82f"),

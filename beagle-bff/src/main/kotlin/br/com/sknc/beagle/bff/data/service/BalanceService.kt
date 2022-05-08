@@ -4,7 +4,6 @@ import br.com.sknc.beagle.bff.data.repository.BalanceRepository
 import br.com.sknc.beagle.bff.domain.models.BalanceDataConfig
 import org.springframework.stereotype.Service
 
-
 @Service
 class BalanceService(private val balanceRepository: BalanceRepository) {
 
@@ -23,7 +22,6 @@ class BalanceService(private val balanceRepository: BalanceRepository) {
         } catch (e: java.lang.Exception) {
             BalanceDataConfig.Error(endpoint = endpoint)
         }
-
     }
 
 }

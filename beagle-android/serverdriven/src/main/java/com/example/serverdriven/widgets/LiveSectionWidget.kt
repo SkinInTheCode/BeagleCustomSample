@@ -8,20 +8,20 @@ import br.com.zup.beagle.android.context.ContextComponent
 import br.com.zup.beagle.android.context.ContextData
 import br.com.zup.beagle.android.utils.Observer
 import br.com.zup.beagle.android.utils.observeBindChanges
-import br.com.zup.beagle.android.utils.toView
 import br.com.zup.beagle.android.widget.RootView
 import br.com.zup.beagle.android.widget.WidgetView
-import br.com.zup.beagle.annotation.RegisterWidget
-import br.com.zup.beagle.core.ServerDrivenComponent
+import br.com.zup.beagle.android.annotation.RegisterWidget
+import br.com.zup.beagle.android.utils.loadView
+import org.json.JSONObject
 
 @RegisterWidget
 class LiveSectionWidget(
     override var context: ContextData,
     private val state: Bind<LiveSectionState>,
     private val onInit: List<Action>,
-    private val successWidget: Bind<ServerDrivenComponent?>,
-    private val loadStateWidget: ServerDrivenComponent? = null,
-    private val errorStateWidget: ServerDrivenComponent? = null,
+    private val successWidget: Bind<JSONObject?>,
+    private val loadStateWidget: JSONObject? = null,
+    private val errorStateWidget: JSONObject? = null,
     private val onRetry: List<Action>? = null
 ) : WidgetView(), ContextComponent {
 
@@ -51,15 +51,15 @@ class LiveSectionWidget(
         }
     }
 
-    private fun FrameLayout.observeWidget(rootView: RootView): Observer<ServerDrivenComponent?> =
+    private fun FrameLayout.observeWidget(rootView: RootView): Observer<JSONObject?> =
         { widget ->
             buildWidget(rootView, widget)
         }
 
-    private fun FrameLayout.buildWidget(rootView: RootView, widget: ServerDrivenComponent?) {
+    private fun FrameLayout.buildWidget(rootView: RootView, widget: JSONObject?) {
         widget?.let {
             removeAllViews()
-            addView(it.toView(rootView.getContext() as AppCompatActivity))
+            loadView(rootView.getContext() as AppCompatActivity, widget.toString())
         }
     }
 

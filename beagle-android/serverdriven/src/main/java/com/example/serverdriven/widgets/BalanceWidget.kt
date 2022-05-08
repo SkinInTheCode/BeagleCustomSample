@@ -1,14 +1,11 @@
 package com.example.serverdriven.widgets
 
 import br.com.zup.beagle.android.action.Action
-import br.com.zup.beagle.android.context.Bind
-import br.com.zup.beagle.android.context.ContextComponent
-import br.com.zup.beagle.android.context.ContextData
-import br.com.zup.beagle.android.context.valueOf
+import br.com.zup.beagle.android.annotation.RegisterWidget
+import br.com.zup.beagle.android.context.*
 import br.com.zup.beagle.android.utils.observeBindChanges
 import br.com.zup.beagle.android.widget.RootView
 import br.com.zup.beagle.android.widget.WidgetView
-import br.com.zup.beagle.annotation.RegisterWidget
 import com.example.designsystem.uikit.BalanceView
 import com.example.serverdriven.ViewCycleListener
 
@@ -18,7 +15,7 @@ class BalanceWidget(
     override var context: ContextData? = null,
     private val onInit: List<Action>? = null,
     private val state: Bind<BalanceState>,
-    private val balance: Bind<Double> = valueOf(0.0),
+    private val balance: Bind<Double> = constant(0.0),
     private val errorAction: List<Action>? = null
 ) : WidgetView(), ContextComponent, ViewCycleListener {
 

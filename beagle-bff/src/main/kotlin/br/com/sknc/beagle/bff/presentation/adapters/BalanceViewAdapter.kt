@@ -16,35 +16,35 @@ import java.util.UUID
 @Service
 class BalanceViewAdapter {
 
-    private var contextId = ""
+    fun build(config: BalanceDataConfig): Widget {
 
-    fun build(config: BalanceDataConfig): Widget{
-        contextId = UUID.randomUUID().toString()
         return when (config) {
-            is BalanceDataConfig.Success -> buildSuccess(config)
-            is BalanceDataConfig.Error -> buildError(config)
+            is BalanceDataConfig.Success -> buildSuccess(config, UUID.randomUUID().toString())
+            is BalanceDataConfig.Error -> buildError(config, UUID.randomUUID().toString())
         }
     }
 
-    private fun buildSuccess(data: BalanceDataConfig.Success) = BalanceWidget(
-        viewCycleState = expressionOf("@{global.home.onViewStateChange}"),
-        onInit = getAction(data),
-        context = ContextData(contextId, BalanceContextData(BalanceState.LOADING, data.balance)),
-        state = expressionOf("@{$contextId.state}"),
-        balance = expressionOf("@{$contextId.balance}"),
-        errorAction = getAction(data)
-    )
+    private fun buildSuccess(data: BalanceDataConfig.Success, contextId: String): Widget {
+        return BalanceWidget(
+            viewCycleState = expressionOf("@{global.home.onViewStateChange}"),
+            onInit = getAction(data, contextId),
+            context = ContextData(contextId, BalanceContextData(BalanceState.LOADING, data.balance)),
+            state = expressionOf("@{$contextId.state}"),
+            balance = expressionOf("@{$contextId.balance}"),
+            errorAction = getAction(data, contextId)
+        )
+    }
 
-    private fun buildError(data: BalanceDataConfig.Error) = BalanceWidget(
+    private fun buildError(data: BalanceDataConfig.Error, contextId: String) = BalanceWidget(
         viewCycleState = expressionOf("@{global.home.onViewStateChange}"),
-        onInit = getAction(data),
+        onInit = getAction(data, contextId),
         context = ContextData(contextId, BalanceContextData(state = BalanceState.ERROR)),
         state = expressionOf("@{$contextId.state}"),
         balance = expressionOf("@{$contextId.balance}"),
-        errorAction = getAction(data)
+        errorAction = getAction(data, contextId)
     )
 
-    private fun getAction(data: BalanceDataConfig) = listOf(
+    private fun getAction(data: BalanceDataConfig, contextId: String) = listOf(
         SetContext(contextId, BalanceState.LOADING, "state"),
         SendRequest(
             url = constant(data.endpoint),

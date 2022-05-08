@@ -72,6 +72,7 @@ object InsightsLiveSectionFactory {
         child = buildErrorWidget()
     )
 
+
     private fun buildErrorWidget() = Container(
     ).setStyle {
         size = Size(

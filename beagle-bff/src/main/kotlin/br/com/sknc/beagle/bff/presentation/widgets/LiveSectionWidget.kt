@@ -27,7 +27,7 @@ data class LiveSectionWidget(
 
     data class LiveSectionDataContext(
         val state: LiveSectionState,
-        val successWidget: ServerDrivenComponent? = null
+        val successWidget: Widget? = null
     )
 
 }
