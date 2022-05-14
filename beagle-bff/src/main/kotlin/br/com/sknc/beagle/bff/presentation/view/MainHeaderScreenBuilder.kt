@@ -45,14 +45,14 @@ object MainHeaderScreenBuilder {
                                 ),
                                 buildHeaderIcon(
                                     IconTextConfigData(
-                                        uniCodeIcon = "\ue83f",
+                                        uniCodeIcon = "\ue818",
                                         color = Color.Light_Gray,
                                         size = 20.0f
                                     )
                                 ),
                                 buildHeaderIcon(
                                     IconTextConfigData(
-                                        uniCodeIcon = "\ue818",
+                                        uniCodeIcon = "\ue83f",
                                         color = Color.Light_Gray,
                                         size = 20.0f
                                     )

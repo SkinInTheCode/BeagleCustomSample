@@ -9,12 +9,11 @@ import br.com.zup.beagle.widget.context.ContextData
 
 @RegisterWidget
 class BalanceWidget(
-    override var context: ContextData? = null,
-    val viewCycleState: Bind<String>,
     val onInit: List<Action>? = null,
     val state: Bind<BalanceState>,
     val balance: Bind<Double>,
-    val errorAction: List<Action>? = null
+    val errorAction: List<Action>? = null,
+    override var context: ContextData? = null
 ) : Widget(), ContextComponent
 
 data class BalanceContextData(val state : BalanceState, val balance : Double = 0.0)

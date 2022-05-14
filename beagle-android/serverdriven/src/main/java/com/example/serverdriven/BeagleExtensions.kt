@@ -1,19 +1,60 @@
 package com.example.serverdriven
 
-import br.com.zup.beagle.android.context.Bind
-import br.com.zup.beagle.android.context.GlobalContext
+import android.content.Context
+import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.*
+import br.com.zup.beagle.android.action.SetContext
+import br.com.zup.beagle.android.data.serializer.BeagleJsonSerializerFactory
+import br.com.zup.beagle.android.utils.loadView
+import br.com.zup.beagle.android.widget.RootView
+import br.com.zup.beagle.android.widget.core.ServerDrivenComponent
+import java.lang.Exception
 
-fun onViewStateChange(screen: String, viewState: ViewCycleListener.ViewState) {
-    GlobalContext.set(viewState.state, screen.plus(".onViewStateChange"))
+fun ViewGroup.loadView(activity: AppCompatActivity, component: ServerDrivenComponent) {
+    loadView(
+        activity = activity,
+        screenJson = BeagleJsonSerializerFactory.serializer.serializeComponent(component)
+    )
 }
 
-interface ViewCycleListener {
-    var viewCycleState: Bind<String>
+fun ViewGroup.loadView(fragment: Fragment, component: ServerDrivenComponent) {
+    loadView(
+        fragment = fragment,
+        screenJson = BeagleJsonSerializerFactory.serializer.serializeComponent(component)
+    )
+}
 
-    enum class ViewState(val state : String) {
-        RESUME("onResume"),
-        PAUSE("onPause")
+fun ViewGroup.loadView(context: Context, component: ServerDrivenComponent) {
+    when (context) {
+        is AppCompatActivity -> loadView(
+            context,
+            screenJson = BeagleJsonSerializerFactory.serializer.serializeComponent(component)
+        )
+        is Fragment -> loadView(
+            context,
+            screenJson = BeagleJsonSerializerFactory.serializer.serializeComponent(component)
+        )
+        else -> Exception()
     }
 }
 
+fun ServerDrivenComponent.toView(activity: AppCompatActivity, component: ServerDrivenComponent) =
+    FrameLayout(activity).apply {
+        loadView(
+            activity = activity,
+            screenJson = BeagleJsonSerializerFactory.serializer.serializeComponent(component)
+        )
+    }
+
+fun ServerDrivenComponent.toView(fragment: Fragment, component: ServerDrivenComponent) =
+    FrameLayout(fragment.requireContext()).apply {
+        loadView(
+            fragment = fragment,
+            screenJson = BeagleJsonSerializerFactory.serializer.serializeComponent(component)
+        )
+    }
 

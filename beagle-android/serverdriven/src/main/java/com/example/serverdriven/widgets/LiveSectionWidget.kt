@@ -11,39 +11,39 @@ import br.com.zup.beagle.android.utils.observeBindChanges
 import br.com.zup.beagle.android.widget.RootView
 import br.com.zup.beagle.android.widget.WidgetView
 import br.com.zup.beagle.android.annotation.RegisterWidget
-import br.com.zup.beagle.android.utils.loadView
-import org.json.JSONObject
+import br.com.zup.beagle.android.widget.core.ServerDrivenComponent
+import com.example.serverdriven.loadView
 
 @RegisterWidget
 class LiveSectionWidget(
     override var context: ContextData,
     private val state: Bind<LiveSectionState>,
     private val onInit: List<Action>,
-    private val successWidget: Bind<JSONObject?>,
-    private val loadStateWidget: JSONObject? = null,
-    private val errorStateWidget: JSONObject? = null,
+    private val successWidget: Bind<ServerDrivenComponent?>,
+    private val loadStateWidget: ServerDrivenComponent? = null,
+    private val errorStateWidget: ServerDrivenComponent? = null,
     private val onRetry: List<Action>? = null
 ) : WidgetView(), ContextComponent {
 
-    override fun buildView(rootView: RootView) = FrameLayout(rootView.getContext()).also { view ->
-        observeBindChanges(rootView, view, state) { liveSectionState ->
+    override fun buildView(rootView: RootView) = FrameLayout(rootView.getContext()).apply {
+        observeBindChanges(rootView, this, state) { liveSectionState ->
             when (liveSectionState) {
 
-                LiveSectionState.LOADING -> loadStateWidget?.let { view.buildWidget(rootView, it) }
+                LiveSectionState.LOADING -> loadStateWidget?.let { buildWidget(rootView, it) }
 
-                LiveSectionState.ERROR -> errorStateWidget?.let { view.buildWidget(rootView, it) }
+                LiveSectionState.ERROR -> errorStateWidget?.let { buildWidget(rootView, it) }
 
                 LiveSectionState.RETRY -> onRetry?.forEach { action ->
-                    action.execute(rootView, view)
+                    action.execute(rootView, this)
                 }
             }
         }
-    }.also { view ->
+
         observeBindChanges(
             rootView = rootView,
-            view,
+            this,
             successWidget,
-            observes = view.observeWidget(rootView)
+            observes = observeWidget(rootView)
         )
     }.also { view ->
         onInit.forEach {
@@ -51,15 +51,15 @@ class LiveSectionWidget(
         }
     }
 
-    private fun FrameLayout.observeWidget(rootView: RootView): Observer<JSONObject?> =
+    private fun FrameLayout.observeWidget(rootView: RootView): Observer<ServerDrivenComponent?> =
         { widget ->
             buildWidget(rootView, widget)
         }
 
-    private fun FrameLayout.buildWidget(rootView: RootView, widget: JSONObject?) {
+    private fun FrameLayout.buildWidget(rootView: RootView, widget: ServerDrivenComponent?) {
         widget?.let {
             removeAllViews()
-            loadView(rootView.getContext() as AppCompatActivity, widget.toString())
+            loadView(rootView.getContext(), widget)
         }
     }
 

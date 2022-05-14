@@ -7,68 +7,55 @@ import br.com.zup.beagle.android.utils.observeBindChanges
 import br.com.zup.beagle.android.widget.RootView
 import br.com.zup.beagle.android.widget.WidgetView
 import com.example.designsystem.uikit.BalanceView
-import com.example.serverdriven.ViewCycleListener
 
 @RegisterWidget
 class BalanceWidget(
-    override var viewCycleState: Bind<String>,
-    override var context: ContextData? = null,
     private val onInit: List<Action>? = null,
     private val state: Bind<BalanceState>,
-    private val balance: Bind<Double> = constant(0.0),
-    private val errorAction: List<Action>? = null
-) : WidgetView(), ContextComponent, ViewCycleListener {
+    private val balance: Bind<Double>,
+    private val errorAction: List<Action>? = null,
+    override var context: ContextData? = null
+) : WidgetView(), ContextComponent {
 
     override fun buildView(rootView: RootView) = BalanceView(rootView.getContext()).apply {
-          observeBindChanges(
-                rootView = rootView,
-                this,
-                viewCycleState
-            ) { state ->
 
-               when(state){
-                   ViewCycleListener.ViewState.RESUME.state ->{
-                       onInit?.forEach {
-                           it.execute(rootView, this)
-                       }
-                   }
+        rootView.observeState(this)
+        rootView.observeBalance(this)
+    }.also { view ->
+        onInit?.forEach { it.execute(rootView, view) }
+    }
 
-                   ViewCycleListener.ViewState.PAUSE.state ->{
-
-                   }
-               }
-            }
-
+    private fun RootView.observeBalance(view: BalanceView) {
         observeBindChanges(
-            rootView = rootView,
-            this,
+            rootView = this,
+            view,
             balance
         ) { value ->
             value?.let {
-                setBalance(it)
+                view.setBalance(it)
             }
         }
-    }.also { view ->
-        observeBindChanges(rootView, view, state) { balanceState ->
+    }
+
+    private fun RootView.observeState(view: BalanceView) {
+        observeBindChanges(this, view, state)
+        { balanceState ->
             when (balanceState) {
 
                 BalanceState.LOADING -> view.showLoading(true)
 
                 BalanceState.ERROR -> view.showError {
                     errorAction?.forEach {
-                        it.execute(rootView, view)
+                        it.execute(this, view)
                     }
                 }
 
                 BalanceState.SUCCESS -> view.showBalance()
             }
         }
-    }.also { view ->
-        onInit?.forEach {
-            it.execute(rootView, view)
-        }
     }
 }
+
 
 enum class BalanceState {
     LOADING,

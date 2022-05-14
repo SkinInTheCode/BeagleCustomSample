@@ -2,6 +2,7 @@ package br.com.sknc.beagle.bff.presentation.adapters
 
 import br.com.sknc.beagle.bff.Color
 import br.com.sknc.beagle.bff.domain.models.Insight
+import br.com.sknc.beagle.bff.presentation.widgets.AnimationWidget
 import br.com.sknc.beagle.bff.presentation.widgets.LiveSectionWidget
 import br.com.sknc.beagle.bff.presentation.widgets.ShimmerWidget
 import br.com.zup.beagle.core.CornerRadius
@@ -16,6 +17,7 @@ import br.com.zup.beagle.widget.core.Size
 import br.com.zup.beagle.widget.core.UnitValue
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.navigation.Touchable
+import com.fasterxml.jackson.databind.util.JSONPObject
 
 object InsightsLiveSectionFactory {
 
@@ -39,7 +41,7 @@ object InsightsLiveSectionFactory {
     private fun getAction() = listOf(
         SetContext(INSIGHT_CONTEXT_ID, LiveSectionWidget.LiveSectionState.LOADING, "state"),
         SendRequest(
-            url = constant("http://10.0.2.2:3000/home/screen/insight"),
+            url = constant("http://10.0.2.2:8080/home/screen/insight"),
             onSuccess = listOf(
                 SetContext(
                     INSIGHT_CONTEXT_ID,
