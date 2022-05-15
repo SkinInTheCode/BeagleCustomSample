@@ -23,7 +23,6 @@ class CustomViewClient(
                 },
                 onError = { error ->
                     onError(error)
-
                 }
             )
         }

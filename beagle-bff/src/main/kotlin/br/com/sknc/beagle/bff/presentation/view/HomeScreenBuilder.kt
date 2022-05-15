@@ -8,15 +8,12 @@ import br.com.sknc.beagle.bff.presentation.adapters.BalanceViewAdapter
 import br.com.sknc.beagle.bff.presentation.adapters.BannerListViewAdapter
 import br.com.sknc.beagle.bff.presentation.adapters.InsightsLiveSectionFactory
 import br.com.sknc.beagle.bff.presentation.adapters.MenuViewAdapter
-import br.com.sknc.beagle.bff.presentation.widgets.BannerButtonComposedWidget
-import br.com.sknc.beagle.bff.presentation.widgets.DescriptionIconButtonComposedWidget
-import br.com.sknc.beagle.bff.presentation.widgets.DividerComposedWidget
-import br.com.sknc.beagle.bff.presentation.widgets.IconTextViewWidget
 import br.com.sknc.beagle.bff.data.repository.BannerRepository
 import br.com.sknc.beagle.bff.data.repository.MenuRepository
 import br.com.sknc.beagle.bff.data.service.BalanceService
 import br.com.sknc.beagle.bff.data.service.MenuService
 import br.com.sknc.beagle.bff.domain.models.BalanceDataConfig
+import br.com.sknc.beagle.bff.presentation.widgets.*
 import br.com.sknc.beagle.bff.presentation.widgets.config.IconTextConfigData
 import br.com.sknc.beagle.bff.presentation.widgets.config.TextConfigData
 import br.com.zup.beagle.ext.setStyle
@@ -45,6 +42,16 @@ class HomeScreenBuilder(
             scrollBarEnabled = false,
             children = listOf(
                MainHeaderScreenBuilder.build(),
+               InsightComposedWidget(
+                   background = Color.Purple_700,
+                   imageUrl = "https://nubank.com.br/images-cms/1649356625-ultraviolet-card-floating-lg-3x.png?w=360&dpr=1&auto=compress",
+                   title = TextConfigData(
+                       text = "Nubank Ultravioleta\nO cartão pensado para quem quer ver além",
+                       textStyle = TextStyle.BaseText_Medium_Bold,
+                       textColor = Color.White
+                   ),
+                   button = InsightComposedWidget.Button( title = "saiba mais")
+               ).build().applyMargin(top = 24, right = 24, left = 24),
                InsightsLiveSectionFactory.build().applyMargin(top = 24, bottom = 12),
                 DescriptionIconButtonComposedWidget(
                     title = TextConfigData(text = "Conta", textStyle = TextStyle.BaseText_Medium_Bold),

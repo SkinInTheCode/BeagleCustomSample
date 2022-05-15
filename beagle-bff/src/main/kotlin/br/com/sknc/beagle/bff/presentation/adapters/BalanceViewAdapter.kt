@@ -18,7 +18,7 @@ class BalanceViewAdapter {
 
     fun build(config: BalanceDataConfig): Widget {
         return when (config) {
-            is BalanceDataConfig.Success -> buildSuccess(config.identifier).wrapperLifeCycleObserve(config)
+            is BalanceDataConfig.Success -> buildSuccess(config, config.identifier).wrapperLifeCycleObserve(config)
             is BalanceDataConfig.Error -> buildError(config, config.identifier).wrapperLifeCycleObserve(config)
         }
     }
@@ -29,10 +29,11 @@ class BalanceViewAdapter {
         onViewShow = getAction(data, data.identifier)
     )
 
-    private fun buildSuccess(contextId: String): BalanceWidget {
+    private fun buildSuccess(data: BalanceDataConfig.Success, contextId: String): BalanceWidget {
         return BalanceWidget(
             state = expressionOf("@{$contextId.state}"),
-            balance = expressionOf("@{$contextId.balance}")
+            balance = expressionOf("@{$contextId.balance}"),
+            errorAction = getAction(data, contextId)
         )
     }
 

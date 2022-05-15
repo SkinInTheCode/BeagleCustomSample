@@ -19,8 +19,8 @@ class BalanceWidget(
 
     override fun buildView(rootView: RootView) = BalanceView(rootView.getContext()).apply {
 
-        rootView.observeState(this)
         rootView.observeBalance(this)
+        rootView.observeState(this)
     }.also { view ->
         onInit?.forEach { it.execute(rootView, view) }
     }

@@ -21,6 +21,18 @@
         tools:text="R$ 2000,00"
         tools:visibility="visible" />
 
+    <TextView
+        style="@style/BaseText.Large.Bold"
+        android:id="@+id/tvError"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_view_container"
         android:layout_width="wrap_content"
