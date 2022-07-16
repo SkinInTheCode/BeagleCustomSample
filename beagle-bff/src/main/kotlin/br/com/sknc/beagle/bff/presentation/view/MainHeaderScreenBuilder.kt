@@ -5,6 +5,8 @@ import br.com.sknc.beagle.bff.presentation.widgets.IconTextViewWidget
 import br.com.sknc.beagle.bff.presentation.widgets.UserAvatarComposedWidget
 import br.com.sknc.beagle.bff.presentation.widgets.config.IconTextConfigData
 import br.com.zup.beagle.ext.setStyle
+import br.com.zup.beagle.widget.action.Navigate
+import br.com.zup.beagle.widget.action.Route
 import br.com.zup.beagle.widget.context.constant
 import br.com.zup.beagle.widget.core.*
 import br.com.zup.beagle.widget.layout.Container
@@ -26,7 +28,13 @@ object MainHeaderScreenBuilder {
                                         color = Color.Light_Gray,
                                         size = 20.0f
                                     ),
-                                    actionClick = listOf()
+                                    actionClick = listOf (
+                                        Navigate.PushView(
+                                            Route.Remote(
+                                               url = "http://10.0.2.2:8080/home/screen2"
+                                            )
+                                        )
+                                    )
                                 )
                             )
                         ).setStyle {

@@ -7,19 +7,34 @@
     android:layout_height="48dp"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <TextView
-        style="@style/BaseText.Large.Bold"
-        android:id="@+id/tvBalance"
+    <FrameLayout
+        android:id="@+id/fl_balance_container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:textColor="@color/black"
-        android:visibility="invisible"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="R$ 2000,00"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            style="@style/BaseText.Large.Bold"
+            android:id="@+id/tvBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:visibility="invisible"
+            android:gravity="center"
+            tools:text="R$ 2000,00"
+            tools:visibility="visible" />
+
+        <View
+            android:id="@+id/v_balance_toggle_view"
+            android:visibility="gone"
+            android:layout_width="110dp"
+            android:layout_height="5dp"
+            android:background="#dddddd"
+            android:layout_gravity="right|center"/>
+
+    </FrameLayout>
 
     <TextView
         style="@style/BaseText.Large.Bold"
@@ -57,10 +72,23 @@
         android:gravity="center"
         android:visibility="gone"
         android:textColor="@color/purple_700"
-        android:textSize="@dimen/abc_text_size_large_material"
-        app:layout_constraintBottom_toBottomOf="@+id/tvBalance"
-        app:layout_constraintStart_toEndOf="@+id/tvBalance"
-        app:layout_constraintTop_toTopOf="@+id/tvBalance"
-        android:text="\ue860" />
+        android:textSize="@dimen/abc_text_size_medium_material"
+        app:layout_constraintBottom_toBottomOf="@+id/fl_balance_container"
+        app:layout_constraintStart_toEndOf="@+id/fl_balance_container"
+        app:layout_constraintTop_toTopOf="@+id/fl_balance_container"
+        android:text="\ue860"/>
+
+    <com.example.designsystem.uikit.IconTextView
+        android:id="@+id/itv_toggle_balance_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:visibility="visible"
+        android:textColor="@color/purple_700"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        app:layout_constraintBottom_toBottomOf="@+id/fl_balance_container"
+        app:layout_constraintStart_toEndOf="@+id/fl_balance_container"
+        app:layout_constraintTop_toTopOf="@+id/fl_balance_container"
+        android:text="" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

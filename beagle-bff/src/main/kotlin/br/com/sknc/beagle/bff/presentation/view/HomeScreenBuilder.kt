@@ -35,24 +35,26 @@ class HomeScreenBuilder(
     private val balanceRepository: BalanceRepository
 ) {
 
+    //fun build() = balanceViewAdapter.build(balanceService.getBalanceSectionData()).applyMargin( top = 24, bottom = 24)
+
     fun build() = Screen(
         id = "HomeScreen",
         child = ScrollView(
             scrollDirection = ScrollAxis.VERTICAL,
             scrollBarEnabled = false,
             children = listOf(
-               MainHeaderScreenBuilder.build(),
-               InsightComposedWidget(
-                   background = Color.Purple_700,
-                   imageUrl = "https://nubank.com.br/images-cms/1649356625-ultraviolet-card-floating-lg-3x.png?w=360&dpr=1&auto=compress",
-                   title = TextConfigData(
-                       text = "Nubank Ultravioleta\nO cartão pensado para quem quer ver além",
-                       textStyle = TextStyle.BaseText_Medium_Bold,
-                       textColor = Color.White
-                   ),
-                   button = InsightComposedWidget.Button( title = "saiba mais")
-               ).build().applyMargin(top = 24, right = 24, left = 24),
-               InsightsLiveSectionFactory.build().applyMargin(top = 24, bottom = 12),
+                MainHeaderScreenBuilder.build(),
+                InsightComposedWidget(
+                    background = Color.Purple_700,
+                    imageUrl = "https://nubank.com.br/images-cms/1649356625-ultraviolet-card-floating-lg-3x.png?w=360&dpr=1&auto=compress",
+                    title = TextConfigData(
+                        text = "Nubank Ultravioleta\nO cartão pensado para quem quer ver além",
+                        textStyle = TextStyle.BaseText_Medium_Bold,
+                        textColor = Color.White
+                    ),
+                    button = InsightComposedWidget.Button(title = "saiba mais")
+                ).build().applyMargin(top = 24),
+                InsightsLiveSectionFactory.build().applyMargin(top = 24, bottom = 12),
                 DescriptionIconButtonComposedWidget(
                     title = TextConfigData(text = "Conta", textStyle = TextStyle.BaseText_Medium_Bold),
                     icon = IconTextConfigData(uniCodeIcon = "\ue876", size = 16.0f),

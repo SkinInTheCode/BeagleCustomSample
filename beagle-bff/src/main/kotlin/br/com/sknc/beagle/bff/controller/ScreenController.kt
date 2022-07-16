@@ -2,6 +2,7 @@ package br.com.sknc.beagle.bff.controller
 
 import br.com.sknc.beagle.bff.Color
 import br.com.sknc.beagle.bff.presentation.view.HomeScreenBuilder
+import br.com.sknc.beagle.bff.presentation.view.SecondHomeScreenBuilder
 import br.com.sknc.beagle.bff.presentation.widgets.AnimationWidget
 import br.com.zup.beagle.core.CornerRadius
 import br.com.zup.beagle.ext.setStyle
@@ -14,10 +15,16 @@ import org.springframework.web.bind.annotation.RestController
 import java.io.File
 
 @RestController
-class ScreenController(private val screen: HomeScreenBuilder) {
+class ScreenController(
+    private val screen: HomeScreenBuilder,
+    private val screen2: SecondHomeScreenBuilder
+) {
 
     @Value("\${animation.bear}")
     lateinit var animationBear: String
+
+    @GetMapping("home/screen2")
+    fun getHomeScreen2() = screen2.build()
 
     @GetMapping("home/screen")
     fun getHomeScreen() = screen.build()

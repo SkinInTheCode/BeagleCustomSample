@@ -32,8 +32,8 @@ dependencies {
     api project(path: ':designsystem')
     implementation 'com.squareup.okhttp:okhttp:2.7.5'
 
-    kapt "br.com.zup.beagle:android-processor:2.0.1"
-    api "br.com.zup.beagle:android:2.0.1"
+    kapt "br.com.zup.beagle:android-processor:2.0.3"
+    api "br.com.zup.beagle:android:2.0.3"
 
     implementation "br.com.zup.beagle:beagle-scaffold:2.0.0"
 

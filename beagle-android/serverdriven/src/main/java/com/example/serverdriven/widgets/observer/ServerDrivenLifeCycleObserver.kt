@@ -5,29 +5,34 @@ import android.view.View
 import android.widget.FrameLayout
 import br.com.zup.beagle.android.action.Action
 import br.com.zup.beagle.android.annotation.RegisterWidget
+import br.com.zup.beagle.android.components.OnInitiableComponent
+import br.com.zup.beagle.android.components.OnInitiableComponentImpl
 import br.com.zup.beagle.android.context.ContextComponent
 import br.com.zup.beagle.android.context.ContextData
 import br.com.zup.beagle.android.widget.RootView
 import br.com.zup.beagle.android.widget.WidgetView
 import br.com.zup.beagle.android.widget.core.ServerDrivenComponent
+import br.com.zup.beagle.android.widget.core.SingleChildComponent
 import com.example.serverdriven.loadView
 
 @RegisterWidget
 class ServerDrivenLifeCycleObserver(
-    private val child: ServerDrivenComponent? = null,
+    override val child: ServerDrivenComponent,
     override var context: ContextData? = null,
     private val onViewShow: List<Action>? = null,
     private val onViewHide: List<Action>? = null,
-    private val onInit: List<Action>? = null
-) : WidgetView(), ContextComponent, LifeCycleEventListener,
+    override val onInit: List<Action>? = null
+) : WidgetView(), SingleChildComponent, ContextComponent, LifeCycleEventListener,
+    OnInitiableComponent by OnInitiableComponentImpl(onInit),
     ServerDrivenLifeCycleObserverDelegate by ServerDrivenLifeCycleObserverDelegateImpl() {
 
     override fun buildView(rootView: RootView) = FrameLayout(rootView.getContext()).apply {
 
         rootView.observeLifeCycleOwner(this)
-        child?.let { loadView(rootView.getContext(), it) }
-    }.also { view ->
-        onInit?.forEach { it.execute(rootView, view) }
+
+       // handleOnInit(rootView, this)
+
+        loadView(rootView.getContext(), child)
     }
 
     private fun RootView.observeLifeCycleOwner(originView: View) {

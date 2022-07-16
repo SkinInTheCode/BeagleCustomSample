@@ -15,14 +15,14 @@ class AppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        ServerDrivenInitializer.initialize(this, StorageImpl(
+        ServerDrivenInitializer.initialize(this,
+            StorageImpl(
             this,
             "BEABLEDOCS",
             Gson()
         ))
 
         val t = HomeDelegateImpl()
-
     }
 }
 
@@ -66,7 +66,6 @@ class HomeDelegateImpl {
     init {
         DaggerAppComponent.create().inject(this)
     }
-
 
 }
 

@@ -13,13 +13,19 @@ class BalanceWidget(
     val state: Bind<BalanceState>,
     val balance: Bind<Double>,
     val errorAction: List<Action>? = null,
-    override var context: ContextData? = null
+    override var context: ContextData? = null,
+    val balanceToggle: BalanceToggle? = null
 ) : Widget(), ContextComponent
 
-data class BalanceContextData(val state : BalanceState, val balance : Double = 0.0)
+data class BalanceContextData(val state : BalanceState, val balance : Double = 0.0, val balanceVisible: Boolean = true)
 
 enum class BalanceState {
     LOADING,
     ERROR,
     SUCCESS
 }
+data class BalanceToggle(
+    val onHideAction: List<Action>? = null,
+    val onShowAction: List<Action>? = null,
+    val balanceToggleVisible: Bind<Boolean>? = null,
+)

@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Projects/AndroidProjects/BeagleCustomSample/beagle-android/designsystem/src/main/res/layout/balance_view.xml" value="0.26927083333333335" />
+        <entry key="..\:/Projects/AndroidProjects/BeagleCustomSample/beagle-android/app/src/main/res/layout/activity_main.xml" value="0.35833333333333334" />
+        <entry key="..\:/Projects/AndroidProjects/BeagleCustomSample/beagle-android/designsystem/src/main/res/layout/balance_view.xml" value="0.25" />
         <entry key="..\:/Projects/AndroidProjects/BeagleCustomSample/beagle-android/designsystem/src/main/res/layout/circle_icon_button_view.xml" value="0.3546875" />
       </map>
     </option>
